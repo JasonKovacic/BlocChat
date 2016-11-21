@@ -1,6 +1,5 @@
 (function() {
     function LandingCtrl(Room) {
-        // this.rooms = [{name: 'Blue'},{name: 'Red'},{name: 'Yellow'}]
 
         this.rooms = Room.all
 
@@ -12,9 +11,16 @@
 
 
 
-        this.clickFunction = function(){
-            console.log(1)
+        this.createRoom = () => {
+            Room.all.$add(this.newRoom)
+            this.newRoom = {}
         }
+
+        this.deleteRoom = (room) => {
+            Room.all.$remove(room)
+        }
+
+
 
 
     }
