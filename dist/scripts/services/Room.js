@@ -4,10 +4,25 @@
     var rooms = $firebaseArray(ref);
 
 
-    window.foo = rooms
+
+
+
+    function retrieveMessages(room){
+        var ref = firebase.database().ref().child("/messages");
+
+        ref = ref.orderByChild("roomId").equalTo(room.$id)
+
+        var messages = $firebaseArray(ref);
+
+        return messages
+    }
+
+
+    // window.foo = messages;
 
     return {
-      all: rooms
+      all: rooms,
+      messages: retrieveMessages
     };
   }
 
