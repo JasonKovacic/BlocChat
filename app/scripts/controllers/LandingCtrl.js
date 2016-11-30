@@ -1,7 +1,8 @@
 (function() {
-    function LandingCtrl(Room) {
+    function LandingCtrl(Room, $rootScope) {
 
         this.rooms = Room.all
+
 
 
         // this.rooms.$add({name: "Chat Room Name"})
@@ -17,7 +18,6 @@
         }
 
 
-
         this.createRoom = () => {
             Room.all.$add(this.newRoom)
             this.newRoom = {}
@@ -26,8 +26,7 @@
         this.createMessage = () => {
 
             this.newMessage.roomId = this.activeRoom.$id
-
-
+            this.newMessage.userId = $rootScope.currentUser 
             this.messages.$add(this.newMessage)
             this.newMessage = {}
         }
@@ -42,5 +41,5 @@
 
     angular
         .module('blocChat')
-        .controller('LandingCtrl', ["Room", LandingCtrl]);
+        .controller('LandingCtrl', ["Room", "$rootScope", LandingCtrl]);
 })();

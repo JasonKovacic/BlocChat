@@ -17,7 +17,6 @@
         return messages
     }
 
-
     // window.foo = messages;
 
     return {
